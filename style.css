@@ -1,0 +1,743 @@
+/* ==========================================================================
+   RESET & VARIÁVEIS GLOBAIS (DESIGN SYSTEM)
+   ========================================================================== */
+
+:root {
+    /* Modo Claro (Padrão) */
+    --bg-color: #f5f5f5;
+    --card-bg: #ffffff;
+    --primary-color: #00838F;
+    --primary-hover: #006b75;
+    --primary-light: rgba(0, 131, 143, 0.12);
+    --text-color: #333333;
+    --text-secondary: #878787;
+
+    /* Cores de suporte */
+    --sidebar-bg: #ffffff;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --input-bg: #f9f9f9;
+    --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.04);
+    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.07);
+
+    /* Dimensões */
+    --sidebar-width: 250px;
+    --header-height: 74px;
+    --bottom-nav-height: 66px;
+
+    /* Transição global suave */
+    --transition: all 0.25s ease-in-out;
+}
+
+/* Modo Escuro (Aplicado via classe .dark-mode no <body>) */
+body.dark-mode {
+    --bg-color: #121212;
+    --card-bg: #1E1E1E;
+    --primary-color: #00838F;
+    --primary-hover: #0097a7;
+    --primary-light: rgba(0, 131, 143, 0.22);
+    --text-color: #E0E0E0;
+    --text-secondary: #878787;
+
+    /* Cores de suporte Dark */
+    --sidebar-bg: #1E1E1E;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --input-bg: #292929;
+    --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.35);
+    --shadow-card: 0 12px 36px rgba(0, 0, 0, 0.55);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   LAYOUT GERAL
+   ========================================================================== */
+
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* ==========================================================================
+   BARRA LATERAL (SIDEBAR)
+   ========================================================================== */
+
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px 16px;
+    z-index: 100;
+    transition: var(--transition);
+}
+
+/* Topo da Sidebar: Logo */
+.sidebar-header {
+    padding: 0 8px 24px 8px;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-logo .logo-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.brand-logo .brand-name {
+    font-size: 1.18rem;
+    font-weight: 500;
+    color: var(--text-color);
+    letter-spacing: -0.3px;
+}
+
+.brand-logo .brand-name strong {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* Navegação da Sidebar */
+.sidebar-nav {
+    flex: 1;
+    margin-top: 10px;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-item a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 14px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.94rem;
+    font-weight: 500;
+    border-radius: 50px; /* Formato de pílula para itens */
+    transition: var(--transition);
+}
+
+/* Ícones padrão (escuros no tema claro / texto secundário) */
+.nav-item .nav-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.nav-item .nav-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Hover nos itens inativos */
+.nav-item:not(.active) a:hover {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+}
+
+.nav-item:not(.active) a:hover .nav-icon {
+    color: var(--primary-color);
+}
+
+/* Item Ativo: Formato de Pílula, fundo #00838F e ícone/texto brancos */
+.nav-item.active a {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 131, 143, 0.28);
+}
+
+.nav-item.active a .nav-icon {
+    color: #ffffff;
+}
+
+/* Rodapé da Sidebar: Sair */
+.sidebar-footer {
+    border-top: 1px solid var(--border-color);
+    padding-top: 16px;
+}
+
+.logout-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 14px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.94rem;
+    font-weight: 500;
+    border-radius: 50px;
+    transition: var(--transition);
+}
+
+.logout-link .nav-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.logout-link .nav-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.logout-link:hover {
+    background-color: rgba(229, 57, 53, 0.1);
+    color: #e53935;
+}
+
+.logout-link:hover .nav-icon {
+    color: #e53935;
+}
+
+/* ==========================================================================
+   ÁREA PRINCIPAL (MAIN CONTENT)
+   ========================================================================== */
+
+.main-content {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-color);
+    transition: var(--transition);
+}
+
+/* Header Superior */
+.top-header {
+    height: var(--header-height);
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    position: sticky;
+    top: 0;
+    z-index: 90;
+    transition: var(--transition);
+}
+
+.header-left .page-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* Campo de Busca Centralizado */
+.header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    max-width: 520px;
+    margin: 0 20px;
+}
+
+.search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    padding: 4px 6px 4px 16px;
+    transition: var(--transition);
+}
+
+.search-wrapper:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.search-wrapper .search-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    margin-right: 10px;
+}
+
+.search-wrapper .search-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 0.92rem;
+    color: var(--text-color);
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+}
+
+.btn-search {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    padding: 8px 18px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.btn-search:hover {
+    background-color: var(--primary-hover);
+    box-shadow: 0 3px 10px rgba(0, 131, 143, 0.3);
+}
+
+/* Canto Direito do Header: Interruptor de Tema */
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.theme-toggle-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.theme-toggle-btn:hover {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: rotate(15deg);
+}
+
+.theme-toggle-btn .theme-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Lógica de exibição Sol/Lua pelo Dark Mode */
+.theme-toggle-btn .sun-icon {
+    display: none;
+}
+
+.theme-toggle-btn .moon-icon {
+    display: block;
+}
+
+body.dark-mode .theme-toggle-btn .sun-icon {
+    display: block;
+    color: #FFA726; /* Cor dourada para o Sol no escuro */
+}
+
+body.dark-mode .theme-toggle-btn .moon-icon {
+    display: none;
+}
+
+/* ==========================================================================
+   CONTEÚDO PRINCIPAL & CARD DE CLIMA
+   ========================================================================== */
+
+.content-body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+}
+
+.card-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Card de Clima Moderno */
+.weather-card {
+    background-color: var(--card-bg);
+    border-radius: 12px; /* Regra de design: 12px */
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-card);
+    width: 100%;
+    max-width: 440px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    position: relative;
+    transition: var(--transition);
+}
+
+.weather-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Topo do Card */
+.card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.location-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.location-pin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+}
+
+.location-pin svg {
+    width: 22px;
+    height: 22px;
+}
+
+.city-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color);
+    line-height: 1.2;
+}
+
+.current-date {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+.status-badge {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+/* Corpo do Card: Temperatura e Clima */
+.card-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.temperature-display {
+    display: flex;
+    align-items: flex-start;
+}
+
+.temp-number {
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 0.95;
+    color: var(--text-color);
+    letter-spacing: -2px;
+}
+
+.temp-degree {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-left: 2px;
+    line-height: 1.2;
+}
+
+.weather-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+}
+
+.weather-icon-wrapper {
+    width: 76px;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.weather-art {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 4px 10px rgba(0, 131, 143, 0.2));
+}
+
+.weather-condition {
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-top: 4px;
+}
+
+.weather-feels {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* Rodapé do Card: Detalhes (Umidade e Vento) */
+.card-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--input-bg);
+    border-radius: 10px;
+    padding: 16px 12px;
+    border: 1px solid var(--border-color);
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    justify-content: center;
+}
+
+.detail-icon-box {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detail-icon-box svg {
+    width: 20px;
+    height: 20px;
+}
+
+.detail-meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-label {
+    font-size: 0.76rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.detail-value {
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.detail-divider {
+    width: 1px;
+    height: 34px;
+    background-color: var(--border-color);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (< 768px: BOTTOM NAVIGATION & ADAPTAÇÕES MOBILE)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* Barra Lateral convertida em Bottom Navigation */
+    .sidebar {
+        width: 100%;
+        height: var(--bottom-nav-height);
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0 12px;
+        border-right: none;
+        border-top: 1px solid var(--border-color);
+        box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Oculta o header da barra lateral e o rodapé no mobile */
+    .sidebar-header,
+    .sidebar-footer {
+        display: none;
+    }
+
+    .sidebar-nav {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .nav-list {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        gap: 4px;
+    }
+
+    .nav-item a {
+        padding: 8px 12px;
+        gap: 0;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* Oculta os labels de texto para uma navegação limpa por ícones */
+    .nav-item .nav-label {
+        display: none;
+    }
+
+    .nav-item .nav-icon {
+        width: 26px;
+        height: 26px;
+    }
+
+    .nav-item .nav-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    /* Item ativo na Bottom Navigation com formato de pílula destacado */
+    .nav-item.active a {
+        padding: 8px 18px;
+        border-radius: 50px;
+    }
+
+    /* Ajuste da Área Principal */
+    .main-content {
+        margin-left: 0;
+        padding-bottom: calc(var(--bottom-nav-height) + 16px); /* Espaço para não cobrir o card */
+    }
+
+    /* Header Mobile */
+    .top-header {
+        padding: 0 16px;
+        height: 64px;
+        gap: 10px;
+    }
+
+    .header-left .page-title {
+        display: none; /* Oculta título para dar espaço total à busca */
+    }
+
+    .header-center {
+        margin: 0;
+        max-width: 100%;
+    }
+
+    .search-wrapper {
+        padding: 3px 4px 3px 12px;
+    }
+
+    .search-input {
+        font-size: 0.85rem;
+    }
+
+    .btn-search {
+        padding: 6px 14px;
+        font-size: 0.82rem;
+    }
+
+    .theme-toggle-btn {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+    }
+
+    /* Card de Clima Mobile */
+    .content-body {
+        padding: 24px 16px;
+    }
+
+    .weather-card {
+        padding: 22px 18px;
+        gap: 20px;
+    }
+
+    .temp-number {
+        font-size: 3.6rem;
+    }
+
+    .temp-degree {
+        font-size: 1.4rem;
+    }
+
+    .weather-icon-wrapper {
+        width: 62px;
+        height: 62px;
+    }
+
+    .card-details {
+        padding: 14px 8px;
+    }
+
+    .detail-item {
+        gap: 8px;
+    }
+
+    .detail-icon-box {
+        width: 34px;
+        height: 34px;
+    }
+
+    .detail-value {
+        font-size: 0.88rem;
+    }
+}

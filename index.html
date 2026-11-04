@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard - Visão Geral do Clima</title>
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Layout Principal com Barra Lateral e Conteúdo -->
+    <div class="app-layout">
+        
+        <!-- Barra Lateral (Desktop: lateral esquerda | Mobile: bottom navigation) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="brand-logo">
+                    <!-- Ícone do Logo Clima -->
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+                    </svg>
+                    <span class="brand-name">Beside<strong>Drop</strong></span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item active">
+                        <a href="#inicio" title="Início">
+                            <span class="nav-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                    <polyline points="9 22 9 12 15 12 15 22"/>
+                                </svg>
+                            </span>
+                            <span class="nav-label">Início</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#previsao" title="Previsão">
+                            <span class="nav-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2v2"/>
+                                    <path d="m4.93 4.93 1.41 1.41"/>
+                                    <path d="M20 12h2"/>
+                                    <path d="m19.07 4.93-1.41 1.41"/>
+                                    <path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"/>
+                                    <path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"/>
+                                </svg>
+                            </span>
+                            <span class="nav-label">Previsão</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#cidades" title="Cidades">
+                            <span class="nav-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </span>
+                            <span class="nav-label">Cidades</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#mensagens" title="Mensagens">
+                            <span class="nav-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                                </svg>
+                            </span>
+                            <span class="nav-label">Mensagens</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#configuracoes" title="Configurações">
+                            <span class="nav-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="3"/>
+                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                                </svg>
+                            </span>
+                            <span class="nav-label">Configurações</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#sair" class="logout-link" title="Sair">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                            <polyline points="16 17 21 12 16 7"/>
+                            <line x1="21" y1="12" x2="9" y2="12"/>
+                        </svg>
+                    </span>
+                    <span class="nav-label">Sair</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Área Principal -->
+        <main class="main-content">
+            
+            <!-- Header Superior -->
+            <header class="top-header">
+                <!-- Seção Esquerda: Título / Identificador -->
+                <div class="header-left">
+                    <h1 class="page-title">Dashboard</h1>
+                </div>
+
+                <!-- Seção Centralizada: Campo de Busca com Botão de Ação -->
+                <div class="header-center">
+                    <div class="search-wrapper">
+                        <span class="search-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"/>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            </svg>
+                        </span>
+                        <input type="text" class="search-input" placeholder="Buscar cidade ou região...">
+                        <button type="button" class="btn-search">
+                            <span>Buscar</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Seção Direita: Interruptor de Tema (Sol/Lua) -->
+                <div class="header-right">
+                    <button type="button" class="theme-toggle-btn" aria-label="Alternar modo escuro ou claro" title="Alternar tema">
+                        <!-- Ícone de Lua (Modo Claro ativo -> sugere escuro) -->
+                        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+                        </svg>
+                        <!-- Ícone de Sol (Modo Escuro ativo -> sugere claro) -->
+                        <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="4"/>
+                            <path d="M12 2v2"/>
+                            <path d="M12 20v2"/>
+                            <path d="m4.93 4.93 1.41 1.41"/>
+                            <path d="m17.66 17.66 1.41 1.41"/>
+                            <path d="M2 12h2"/>
+                            <path d="M20 12h2"/>
+                            <path d="m6.34 17.66-1.41 1.41"/>
+                            <path d="m19.07 4.93-1.41 1.41"/>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Área de Conteúdo Centralizada -->
+            <section class="content-body">
+                <div class="card-container">
+                    
+                    <!-- Card de Clima Moderno -->
+                    <article class="weather-card">
+                        <!-- Topo do Card: Localização e Data -->
+                        <div class="card-header">
+                            <div class="location-group">
+                                <span class="location-pin">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                        <circle cx="12" cy="10" r="3"/>
+                                    </svg>
+                                </span>
+                                <div class="location-info">
+                                    <h2 class="city-name">São Paulo, BR</h2>
+                                    <p class="current-date">Quarta-feira, 04 de Novembro</p>
+                                </div>
+                            </div>
+                            <span class="status-badge">Tempo Real</span>
+                        </div>
+
+                        <!-- Corpo do Card: Temperatura Grande e Ícone do Clima -->
+                        <div class="card-body">
+                            <div class="temperature-display">
+                                <span class="temp-number">24</span>
+                                <span class="temp-degree">°C</span>
+                            </div>
+
+                            <div class="weather-visual">
+                                <!-- Ilustração do Clima (Sol com Nuvem estilizada) -->
+                                <div class="weather-icon-wrapper">
+                                    <svg class="weather-art" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Sol Dourado -->
+                                        <circle cx="26" cy="26" r="12" fill="#FFA726"/>
+                                        <path d="M26 8V4M26 48V44M44 26H48M4 26H8M38.7 13.3L41.5 10.5M10.5 41.5L13.3 38.7M38.7 38.7L41.5 41.5M10.5 10.5L13.3 13.3" stroke="#FFA726" stroke-width="3" stroke-linecap="round"/>
+                                        <!-- Nuvem Moderna -->
+                                        <path d="M46 50H22C16.477 50 12 45.523 12 40C12 34.823 15.932 30.562 21 30.062C22.657 23.167 28.825 18 36.25 18C44.81 18 51.75 24.94 51.75 33.5C51.75 34.024 51.724 34.542 51.674 35.053C55.275 36.22 58 39.585 58 43.5C58 47.09 55.09 50 51.5 50H46Z" fill="#00838F" fill-opacity="0.2" stroke="#00838F" stroke-width="3" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <span class="weather-condition">Parcialmente Nublado</span>
+                                <span class="weather-feels">Sensação térmica de 25°C</span>
+                            </div>
+                        </div>
+
+                        <!-- Rodapé do Card: Detalhes de Umidade e Vento -->
+                        <div class="card-details">
+                            <!-- Detalhe 1: Umidade -->
+                            <div class="detail-item">
+                                <div class="detail-icon-box">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                                    </svg>
+                                </div>
+                                <div class="detail-meta">
+                                    <span class="detail-label">Umidade</span>
+                                    <span class="detail-value">68%</span>
+                                </div>
+                            </div>
+
+                            <div class="detail-divider"></div>
+
+                            <!-- Detalhe 2: Vento -->
+                            <div class="detail-item">
+                                <div class="detail-icon-box">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/>
+                                        <path d="M9.6 4.6A2 2 0 1 1 11 8H2"/>
+                                        <path d="M12.6 19.4A2 2 0 1 0 14 16H2"/>
+                                    </svg>
+                                </div>
+                                <div class="detail-meta">
+                                    <span class="detail-label">Vento</span>
+                                    <span class="detail-value">18 km/h</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+        </main>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>
